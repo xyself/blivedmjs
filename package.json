@@ -1,5 +1,5 @@
 {
-  "name": "blivedm-nodejs",
+  "name": "blivedm-js",
   "version": "1.0.0",
   "description": "B站直播弹幕库的Node.js实现",
   "main": "src/index.js",

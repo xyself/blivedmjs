@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
-    "test": "node test/seb.js"
+    "test": "node test/test_web.js"
   },
   "keywords": [
     "bilibili",

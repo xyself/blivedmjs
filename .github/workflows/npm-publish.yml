@@ -21,7 +21,9 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-      - run: npm test
+      - name: Run tests
+        run: npm test
+        timeout-minutes: 1  # 设置超时时间为 1 分钟（60秒）
 
   publish-npm:
     needs: build

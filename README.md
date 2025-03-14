@@ -20,7 +20,7 @@ B站直播弹幕协议的Node.js实现，包含WebSocket客户端。
 ## 安装
 
 ```bash
-npm install blivedm-js
+npm install blivedmjs
 ```
 
 ## 使用示例

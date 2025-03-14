@@ -1,41 +1,41 @@
 {
-  "name": "blivedm-js",
-  "version": "1.1.0",
-  "description": "B站直播弹幕库的Node.js实现 (CommonJS版本)",
-  "main": "src/index.js",
-  "scripts": {
-    "start": "node src/index.js",
-    "test": "node test/test_web.js",
-    "test:sample": "node test/sample.js",
-    "test:openlive": "node test/test_openlive.js"
-  },
-  "keywords": [
-    "bilibili",
-    "live",
-    "danmaku",
-    "bililive",
-    "弹幕",
-    "直播"
-  ],
-  "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "ws": "^8.16.0",
-    "isomorphic-ws": "^5.0.0",
-    "axios": "^1.6.7",
-    "pako": "^2.1.0",
-    "crypto-js": "^4.2.0",
-    "brotli": "^1.3.3"
-  },
-  "engines": {
-    "node": ">=12.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/xfgryujk/blivedm-js"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "access": "public"
-  }
-} 
+    "name": "blivedm-js",
+    "version": "1.1.0",
+    "description": "B站直播弹幕库的Node.js实现 (CommonJS版本)",
+    "main": "src/index.js",
+    "scripts": {
+      "start": "node src/index.js",
+      "test": "node test/test_web.js",
+      "test:sample": "node test/sample.js",
+      "test:openlive": "node test/test_openlive.js"
+    },
+    "keywords": [
+      "bilibili",
+      "live",
+      "danmaku",
+      "bililive",
+      "弹幕",
+      "直播"
+    ],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+      "ws": "^8.16.0",
+      "isomorphic-ws": "^5.0.0",
+      "axios": "^1.6.7",
+      "pako": "^2.1.0",
+      "crypto-js": "^4.2.0",
+      "brotli": "^1.3.3"
+    },
+    "engines": {
+      "node": ">=12.0.0"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/xfgryujk/blivedm-js"
+    },
+    "publishConfig": {
+      "registry": "https://registry.npmjs.org/",
+      "access": "public"
+    }
+  } 

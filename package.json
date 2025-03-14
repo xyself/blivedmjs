@@ -1,6 +1,6 @@
 {
   "name": "blivedm-js",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "B站直播弹幕库的Node.js实现 (CommonJS版本)",
   "main": "src/index.js",
   "scripts": {
@@ -33,5 +33,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/xfgryujk/blivedm-js"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   }
 } 

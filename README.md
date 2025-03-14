@@ -2,6 +2,8 @@
 
 B站直播弹幕协议的Node.js实现，包含WebSocket客户端。
 
+> **注意**：此版本为CommonJS模块格式，可直接在Node.js中使用，无需启用ES模块支持。
+
 ## 功能特性
 
 - 支持WebSocket协议的B站直播弹幕获取

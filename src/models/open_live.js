@@ -1,4 +1,4 @@
-export class DanmakuMessage {
+class DanmakuMessage {
     constructor(data) {
         this.roomId = data.room_id;
         this.uid = data.uid;
@@ -12,7 +12,7 @@ export class DanmakuMessage {
     }
 }
 
-export class GiftMessage {
+class GiftMessage {
     constructor(data) {
         this.roomId = data.room_id;
         this.uid = data.uid;
@@ -30,7 +30,7 @@ export class GiftMessage {
     }
 }
 
-export class GuardBuyMessage {
+class GuardBuyMessage {
     constructor(data) {
         this.roomId = data.room_id;
         this.guardLevel = data.guard_level;
@@ -43,7 +43,7 @@ export class GuardBuyMessage {
     }
 }
 
-export class SuperChatMessage {
+class SuperChatMessage {
     constructor(data) {
         this.roomId = data.room_id;
         this.uid = data.uid;
@@ -59,28 +59,28 @@ export class SuperChatMessage {
     }
 }
 
-export class SuperChatDeleteMessage {
+class SuperChatDeleteMessage {
     constructor(data) {
         this.roomId = data.room_id;
         this.messageIds = data.message_ids;
     }
 }
 
-export class LiveStartMessage {
+class LiveStartMessage {
     constructor(data) {
         this.roomId = data.room_id;
         this.timestamp = data.timestamp;
     }
 }
 
-export class LiveEndMessage {
+class LiveEndMessage {
     constructor(data) {
         this.roomId = data.room_id;
         this.timestamp = data.timestamp;
     }
 }
 
-export class RoomEnterMessage {
+class RoomEnterMessage {
     constructor(data) {
         this.roomId = data.room_id;
         this.uid = data.uid;
@@ -93,7 +93,7 @@ export class RoomEnterMessage {
     }
 }
 
-export class LikeMessage {
+class LikeMessage {
     constructor(data) {
         this.roomId = data.room_id;
         this.uid = data.uid;
@@ -104,4 +104,16 @@ export class LikeMessage {
         this.fansMedalWearingStatus = data.fans_medal_wearing_status;
         this.guardLevel = data.guard_level;
     }
-} 
+}
+
+module.exports = {
+    DanmakuMessage,
+    GiftMessage,
+    GuardBuyMessage,
+    SuperChatMessage,
+    SuperChatDeleteMessage,
+    LiveStartMessage,
+    LiveEndMessage,
+    RoomEnterMessage,
+    LikeMessage
+}; 

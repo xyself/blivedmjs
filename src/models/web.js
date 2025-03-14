@@ -1,10 +1,10 @@
-export class HeartbeatMessage {
+class HeartbeatMessage {
     constructor(data) {
         this.popularity = data.popularity;
     }
 }
 
-export class DanmakuMessage {
+class DanmakuMessage {
     constructor(raw) {
         this.raw = raw;
         const info = raw.info;
@@ -31,7 +31,7 @@ export class DanmakuMessage {
     }
 }
 
-export class GiftMessage {
+class GiftMessage {
     constructor(raw) {
         this.raw = raw;
         const data = raw.data;
@@ -47,7 +47,7 @@ export class GiftMessage {
     }
 }
 
-export class InteractWordMessage {
+class InteractWordMessage {
     constructor(raw) {
         this.raw = raw;
         const data = raw.data;
@@ -71,7 +71,7 @@ export class InteractWordMessage {
     }
 }
 
-export class GuardBuyMessage {
+class GuardBuyMessage {
     constructor(raw) {
         this.raw = raw;
         const data = raw.data;
@@ -86,7 +86,7 @@ export class GuardBuyMessage {
     }
 }
 
-export class SuperChatMessage {
+class SuperChatMessage {
     constructor(raw) {
         this.raw = raw;
         const data = raw.data;
@@ -101,7 +101,7 @@ export class SuperChatMessage {
     }
 }
 
-export class WatchedChangeMessage {
+class WatchedChangeMessage {
     constructor(data) {
         this.num = data.data.num;
         this.text_small = data.data.text_small;
@@ -109,7 +109,7 @@ export class WatchedChangeMessage {
     }
 }
 
-export class OnlineRankCountMessage {
+class OnlineRankCountMessage {
     constructor(data) {
         this.count = data.data.count;
         this.count_text = data.data.count_text;
@@ -118,26 +118,26 @@ export class OnlineRankCountMessage {
     }
 }
 
-export class OnlineRankV2Message {
+class OnlineRankV2Message {
     constructor(data) {
         this.online_list = data.data.online_list;
         this.rank_type = data.data.rank_type;
     }
 }
 
-export class StopLiveRoomListMessage {
+class StopLiveRoomListMessage {
     constructor(data) {
         this.room_id_list = data.data.room_id_list;
     }
 }
 
-export class LikeInfoV3UpdateMessage {
+class LikeInfoV3UpdateMessage {
     constructor(data) {
         this.click_count = data.data.click_count;
     }
 }
 
-export class EntryEffectMessage {
+class EntryEffectMessage {
     constructor(message) {
         this.uid = message.data.uid;
         this.uname = message.data.copy_writing;
@@ -146,7 +146,7 @@ export class EntryEffectMessage {
     }
 }
 
-export class LikeClickMessage {
+class LikeClickMessage {
     constructor(message) {
         this.uid = message.data.uid;
         this.uname = message.data.uname;
@@ -161,7 +161,7 @@ export class LikeClickMessage {
     }
 }
 
-export class UserToastV2Message {
+class UserToastV2Message {
     constructor(message) {
         const data = message.data;
         this.username = data.username;
@@ -175,7 +175,7 @@ export class UserToastV2Message {
     }
 }
 
-export class ComboSendMessage {
+class ComboSendMessage {
     constructor(message) {
         const data = message.data;
         this.uid = data.uid;
@@ -188,7 +188,7 @@ export class ComboSendMessage {
     }
 }
 
-export class HotRankChangedMessage {
+class HotRankChangedMessage {
     constructor(message) {
         const data = message.data;
         this.rank = data.rank;
@@ -201,7 +201,7 @@ export class HotRankChangedMessage {
     }
 }
 
-export class LiveMessage {
+class LiveMessage {
     constructor(message) {
         const data = message.data;
         this.live_status = data.live_status;
@@ -210,7 +210,7 @@ export class LiveMessage {
     }
 }
 
-export class NoticeMsgMessage {
+class NoticeMsgMessage {
     constructor(message) {
         const data = message;
         this.msg_common = data.msg_common;
@@ -220,7 +220,7 @@ export class NoticeMsgMessage {
     }
 }
 
-export class PKBattleMessage {
+class PKBattleMessage {
     constructor(message) {
         const data = message.data;
         this.battle_type = data.battle_type;
@@ -230,7 +230,7 @@ export class PKBattleMessage {
     }
 }
 
-export class PKBattleSettleMessage {
+class PKBattleSettleMessage {
     constructor(message) {
         const data = message.data;
         this.pk_id = data.pk_id;
@@ -240,14 +240,14 @@ export class PKBattleSettleMessage {
     }
 }
 
-export class PreparingMessage {
+class PreparingMessage {
     constructor(message) {
         const data = message.data;
         this.roomid = data.roomid;
     }
 }
 
-export class RoomRealTimeMessageUpdateMessage {
+class RoomRealTimeMessageUpdateMessage {
     constructor(message) {
         const data = message.data;
         this.roomid = data.roomid;
@@ -257,7 +257,7 @@ export class RoomRealTimeMessageUpdateMessage {
     }
 }
 
-export class UserToastMessage {
+class UserToastMessage {
     constructor(message) {
         const data = message.data;
         this.uid = data.uid;
@@ -267,10 +267,37 @@ export class UserToastMessage {
     }
 }
 
-export class WidgetBannerMessage {
+class WidgetBannerMessage {
     constructor(message) {
         const data = message.data;
         this.timestamp = data.timestamp;
         this.widget_list = data.widget_list;
     }
-} 
+}
+
+module.exports = {
+    HeartbeatMessage,
+    DanmakuMessage,
+    GiftMessage,
+    InteractWordMessage,
+    GuardBuyMessage,
+    SuperChatMessage,
+    WatchedChangeMessage,
+    OnlineRankCountMessage,
+    OnlineRankV2Message,
+    StopLiveRoomListMessage,
+    LikeInfoV3UpdateMessage,
+    EntryEffectMessage,
+    LikeClickMessage,
+    UserToastV2Message,
+    ComboSendMessage,
+    HotRankChangedMessage,
+    LiveMessage,
+    NoticeMsgMessage,
+    PKBattleMessage,
+    PKBattleSettleMessage,
+    PreparingMessage,
+    RoomRealTimeMessageUpdateMessage,
+    UserToastMessage,
+    WidgetBannerMessage
+}; 

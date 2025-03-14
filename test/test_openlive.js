@@ -1,5 +1,5 @@
-import { BLiveClient } from '../src/clients/web_client.js';
-import { OpenLiveHandler } from '../src/handlers/openlive_handler.js';
+const { BLiveClient } = require('../src/clients/web_client.js');
+const { OpenLiveHandler } = require('../src/handlers/openlive_handler.js');
 
 async function testOpenLive() {
     console.log('=== 测试开放平台 ===');

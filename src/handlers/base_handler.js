@@ -1,4 +1,4 @@
-export class BaseHandler {
+class BaseHandler {
     constructor() {
         this.CMD_CALLBACK_DICT = {
             'DANMU_MSG': this._on_danmaku.bind(this),
@@ -303,4 +303,8 @@ export class BaseHandler {
     _on_dm_interaction(client, message) {
         // 连续点赞消息，不输出
     }
-} 
+}
+
+module.exports = {
+    BaseHandler
+}; 

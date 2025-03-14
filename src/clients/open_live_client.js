@@ -1,8 +1,8 @@
-import WebSocket from 'ws';
-import crypto from 'crypto';
-import * as openModels from '../models/open_live.js';
+const WebSocket = require('ws');
+const crypto = require('crypto');
+const openModels = require('../models/open_live.js');
 
-export class OpenLiveClient {
+class OpenLiveClient {
     constructor(accessKeyId, accessKeySecret, appId, roomOwnerAuthCode) {
         this.accessKeyId = accessKeyId;
         this.accessKeySecret = accessKeySecret;
@@ -178,4 +178,8 @@ export class OpenLiveClient {
             console.error('处理消息失败:', error);
         }
     }
-} 
+}
+
+module.exports = {
+    OpenLiveClient
+}; 

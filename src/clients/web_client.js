@@ -1,9 +1,9 @@
-import WebSocket from 'isomorphic-ws';
-import pako from 'pako';
-import axios from 'axios';
-import * as webModels from '../models/web.js';
-import brotli from 'brotli';
-import zlib from 'zlib';
+const WebSocket = require('isomorphic-ws');
+const pako = require('pako');
+const axios = require('axios');
+const webModels = require('../models/web.js');
+const brotli = require('brotli');
+const zlib = require('zlib');
 
 const HEADER_SIZE = 16;
 
@@ -32,7 +32,7 @@ const DEFAULT_WS_INFO = {
     ws_port: 2244
 };
 
-export class BLiveClient {
+class BLiveClient {
     constructor(roomId, { sessData = '', ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36' } = {}) {
         this.roomId = roomId;
         this.sessData = sessData;
@@ -437,4 +437,8 @@ export class BLiveClient {
             }));
         }
     }
-} 
+}
+
+module.exports = {
+    BLiveClient
+}; 

@@ -1,6 +1,6 @@
-import { BaseHandler } from './base_handler.js';
+const { BaseHandler } = require('./base_handler.js');
 
-export class OpenLiveHandler extends BaseHandler {
+class OpenLiveHandler extends BaseHandler {
     constructor() {
         super();
         // 开放平台的命令回调字典
@@ -86,4 +86,8 @@ export class OpenLiveHandler extends BaseHandler {
     _on_open_live_end_live(client, message) {
         console.log(`[${client.roomId}] 直播结束`);
     }
-} 
+}
+
+module.exports = {
+    OpenLiveHandler
+}; 

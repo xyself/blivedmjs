@@ -24,8 +24,8 @@ npm install blivedm-js
 ## 使用示例
 
 ```javascript
-import { BLiveClient } from 'blivedm-js';
-import { BaseHandler } from 'blivedm-js/handlers';
+const { BLiveClient } = require('blivedm-js');
+const { BaseHandler } = require('blivedm-js/handlers');
 
 // 创建自定义消息处理器
 class MyHandler extends BaseHandler {

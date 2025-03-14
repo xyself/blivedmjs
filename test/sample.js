@@ -1,6 +1,6 @@
-import { BLiveClient } from '../src/clients/web_client.js';
-import { OpenLiveClient } from '../src/clients/open_live_client.js';
-import { BaseHandler } from '../src/handlers/base_handler.js';
+const { BLiveClient } = require('../src/clients/web_client.js');
+const { OpenLiveClient } = require('../src/clients/open_live_client.js');
+const { BaseHandler } = require('../src/handlers/base_handler.js');
 
 // 测试房间ID列表
 const TEST_ROOM_IDS = [

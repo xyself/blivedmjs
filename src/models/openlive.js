@@ -1,4 +1,4 @@
-export class OpenLiveDanmakuMessage {
+class OpenLiveDanmakuMessage {
     constructor(message) {
         const data = message.data;
         this.uname = data.uname;
@@ -12,7 +12,7 @@ export class OpenLiveDanmakuMessage {
     }
 }
 
-export class OpenLiveGiftMessage {
+class OpenLiveGiftMessage {
     constructor(message) {
         const data = message.data;
         this.uid = data.uid;
@@ -28,7 +28,7 @@ export class OpenLiveGiftMessage {
     }
 }
 
-export class OpenLiveGuardMessage {
+class OpenLiveGuardMessage {
     constructor(message) {
         const data = message.data;
         this.user_info = data.user_info;
@@ -38,7 +38,7 @@ export class OpenLiveGuardMessage {
     }
 }
 
-export class OpenLiveSuperChatMessage {
+class OpenLiveSuperChatMessage {
     constructor(message) {
         const data = message.data;
         this.uid = data.uid;
@@ -51,7 +51,7 @@ export class OpenLiveSuperChatMessage {
     }
 }
 
-export class OpenLiveLikeMessage {
+class OpenLiveLikeMessage {
     constructor(message) {
         const data = message.data;
         this.uname = data.uname;
@@ -63,7 +63,7 @@ export class OpenLiveLikeMessage {
     }
 }
 
-export class OpenLiveEnterRoomMessage {
+class OpenLiveEnterRoomMessage {
     constructor(message) {
         const data = message.data;
         this.uname = data.uname;
@@ -74,7 +74,7 @@ export class OpenLiveEnterRoomMessage {
     }
 }
 
-export class OpenLiveStartMessage {
+class OpenLiveStartMessage {
     constructor(message) {
         const data = message.data;
         this.room_id = data.room_id;
@@ -82,10 +82,21 @@ export class OpenLiveStartMessage {
     }
 }
 
-export class OpenLiveEndMessage {
+class OpenLiveEndMessage {
     constructor(message) {
         const data = message.data;
         this.room_id = data.room_id;
         this.timestamp = data.timestamp;
     }
-} 
+}
+
+module.exports = {
+    OpenLiveDanmakuMessage,
+    OpenLiveGiftMessage,
+    OpenLiveGuardMessage,
+    OpenLiveSuperChatMessage,
+    OpenLiveLikeMessage,
+    OpenLiveEnterRoomMessage,
+    OpenLiveStartMessage,
+    OpenLiveEndMessage
+}; 

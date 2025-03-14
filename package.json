@@ -17,7 +17,7 @@
       "弹幕",
       "直播"
     ],
-    "author": "",
+    "author": "xyself",
     "license": "MIT",
     "dependencies": {
       "ws": "^8.16.0",

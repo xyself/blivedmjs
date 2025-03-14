@@ -1,7 +1,12 @@
 {
   "name": "blivedm-js",
+<<<<<<< HEAD
   "version": "1.0.1",
   "description": "B站直播弹幕库的Node.js实现 (CommonJS版本)",
+=======
+  "version": "1.1.0",
+  "description": "B站直播弹幕库的Node.js实现",
+>>>>>>> 3b7f42fe02a0b81bc137c2fdbde7b370178f1c60
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",

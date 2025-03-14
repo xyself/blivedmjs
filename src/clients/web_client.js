@@ -360,6 +360,14 @@ class BLiveClient {
                     // 醒目留言（SC）
                     this._handler._on_super_chat?.(this, new webModels.SuperChatMessage(command));
                     break;
+                case 'LIKE_INFO_V3_UPDATE':
+                    // 点赞信息更新
+                    this._handler._on_like?.(this, new webModels.LikeInfoV3UpdateMessage(command));
+                    break;
+                case 'LIKE_INFO_V3_CLICK':
+                    // 用户点赞
+                    this._handler._on_like_click?.(this, new webModels.LikeClickMessage(command));
+                    break;
                 case 'INTERACT_WORD':
                     // 用户进入直播间
                     this._handler._on_interact_word?.(this, new webModels.InteractWordMessage(command));
@@ -380,17 +388,21 @@ class BLiveClient {
                     // 停播房间列表
                     this._handler._on_stop_live_room_list?.(this, new webModels.StopLiveRoomListMessage(command));
                     break;
-                case 'LIKE_INFO_V3_UPDATE':
-                    // 点赞信息更新
-                    this._handler._on_like_info_update?.(this, new webModels.LikeInfoV3UpdateMessage(command));
-                    break;
-                case 'LIKE_INFO_V3_CLICK':
-                    // 用户点赞
-                    this._handler._on_like_click?.(this, new webModels.LikeClickMessage(command));
-                    break;
                 case 'ENTRY_EFFECT':
                     // 进入特效
                     this._handler._on_entry_effect?.(this, new webModels.EntryEffectMessage(command));
+                    break;
+                case 'DM_INTERACTION':
+                    // 连续点赞消息
+                    this._handler._on_dm_interaction?.(this, command);
+                    break;
+                case 'WIDGET_BANNER':
+                    // 横幅组件消息
+                    this._handler._on_widget_banner?.(this, new webModels.WidgetBannerMessage(command));
+                    break;
+                case 'NOTICE_MSG':
+                    // 系统通知消息
+                    this._handler._on_notice_msg?.(this, new webModels.NoticeMsgMessage(command));
                     break;
                 default:
                     // 其他消息

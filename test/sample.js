@@ -55,8 +55,31 @@ class MyHandler extends BaseHandler {
     }
 
     _on_interact_word(client, message) {
-        if (message.msgType === 1) {
-            console.log(`[${client.roomId}] ${message.uname}${message.fans_medal.medal_level > 0 ? `[${message.fans_medal.medal_name}${message.fans_medal.medal_level}]` : ''} 进入直播间`);
+        const medal_str = message.fans_medal.medal_level > 0 ? `[${message.fans_medal.medal_name}${message.fans_medal.medal_level}]` : '';
+        const user_str = `${message.uname}${medal_str}`;
+        
+        switch (message.msgType) {
+            case 1:
+                console.log(`[${client.roomId}] ${user_str} 进入直播间`);
+                break;
+            case 2:
+                console.log(`[${client.roomId}] ${user_str} 关注了主播`);
+                break;
+            case 3:
+                console.log(`[${client.roomId}] ${user_str} 分享了直播间`);
+                break;
+            case 4:
+                console.log(`[${client.roomId}] ${user_str} 特别关注了主播`);
+                break;
+            case 5:
+                console.log(`[${client.roomId}] ${user_str} 与主播互粉了`);
+                break;
+            case 6:
+                console.log(`[${client.roomId}] ${user_str} 为主播点赞了`);
+                break;
+            default:
+                console.log(`[${client.roomId}] ${user_str} 未知互动类型: ${message.msgType}`);
+                break;
         }
     }
 

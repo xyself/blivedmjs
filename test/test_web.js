@@ -1,5 +1,5 @@
-const { BLiveClient } = require('../src/clients/web_client');
-const { BaseHandler } = require('../src/handlers/base_handler');
+const BLiveClient = require('../src/clients/web_client');
+const BaseHandler = require('../src/handlers/base_handler');
 
 // 测试房间ID列表
 const TEST_ROOM_IDS = [

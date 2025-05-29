@@ -1,4 +1,4 @@
-const { BaseHandler } = require('./base_handler.js');
+const BaseHandler = require('./base_handler.js');
 
 class OpenLiveHandler extends BaseHandler {
     constructor() {

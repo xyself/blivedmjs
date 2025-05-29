@@ -3,12 +3,14 @@
  * 用于连接B站直播间并获取实时弹幕、礼物、上舰等信息
  */
 
+
 const WebSocket = require('isomorphic-ws'); // 用于创建WebSocket连接的库，兼容浏览器和Node环境
 const pako = require('pako'); // 用于zlib压缩/解压缩
 const axios = require('axios'); // 用于HTTP请求
 const webModels = require('../models/web.js'); // 导入消息模型定义
-const brotli = require('brotli'); // 用于brotli压缩/解压缩
+const { brotliDecompressSync } = require('zlib'); // 用于brotli解压缩
 const zlib = require('zlib'); // Node.js内置的zlib库
+const { wbiSign } = require('./wbi');
 
 // WebSocket消息头部大小
 const HEADER_SIZE = 16;
@@ -176,9 +178,20 @@ class BLiveClient {
                 }
             }
 
-            // 获取弹幕服务器信息
-            const danmuInfoResp = await axios.get(`https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo?id=${this.room_id}`, {
-                headers
+            // 获取wbi签名所需的img_key和sub_key
+            const navResp = await axios.get('https://api.bilibili.com/x/web-interface/nav', { headers });
+            const wbiImg = navResp.data.data && navResp.data.data.wbi_img;
+            if (!wbiImg) throw new Error('获取wbi_img失败');
+            const imgKey = (wbiImg.img_url.match(/([a-zA-Z0-9]+)\.png/) || [])[1];
+            const subKey = (wbiImg.sub_url.match(/([a-zA-Z0-9]+)\.png/) || [])[1];
+            if (!imgKey || !subKey) throw new Error('解析imgKey或subKey失败');
+
+            // 获取弹幕服务器信息（带wbi签名）
+            let params = { id: this.room_id };
+            params = wbiSign(params, imgKey, subKey);
+            const danmuInfoResp = await axios.get('https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo', {
+                headers,
+                params
             });
 
             // 如果获取失败，使用默认服务器
@@ -281,7 +294,7 @@ class BLiveClient {
                 }
             } else if (ver === 3) {  // brotli压缩
                 try {
-                    body = Buffer.from(brotli.decompress(body)); // 解压缩
+                    body = brotliDecompressSync(body); // 解压缩
                     this._onMessage(body);  // 递归处理解压后的数据
                 } catch (e) {
                     // 忽略解压错误

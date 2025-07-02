@@ -511,10 +511,16 @@ class BLiveClient {
                     // 用户点赞
                     this._handler._on_like_click?.(this, new webModels.LikeClickMessage(command));
                     break;
-                case 'INTERACT_WORD':
-                    // 用户进入直播间
-                    this._handler._on_interact_word?.(this, new webModels.InteractWordMessage(command));
+                case 'INTERACT_WORD_V2': {
+                    // 用户进入直播间，兼容pb结构
+                    let msgData = command;
+                    if (command.data && command.data.pb) {
+                        // 兼容新版pb结构，直接传递
+                        msgData = { ...command, data: { ...command.data } };
+                    }
+                    this._handler._on_interact_word?.(this, new webModels.InteractWordMessage(msgData));
                     break;
+                }
                 case 'WATCHED_CHANGE':
                     // 观看人数变化
                     this._handler._on_watched_change?.(this, new webModels.WatchedChangeMessage(command));

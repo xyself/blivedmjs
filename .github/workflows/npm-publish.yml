@@ -32,6 +32,12 @@ jobs:
           node-version: 23.9
           registry-url: https://registry.npmjs.org/
       - run: npm ci
+      - name: Bump version
+        uses: phips28/gh-action-bump-version@v10
+        with:
+          tag-prefix: 'v'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

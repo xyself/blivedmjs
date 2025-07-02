@@ -65,31 +65,53 @@ class GiftMessage {
     }
 }
 
-/**
- * 用户互动消息类
- * 处理用户进入直播间等互动行为
- */
+
+// 用户互动消息类，兼容pb结构和老结构
+const { parsePb } = require('../clients/protobuf');
 class InteractWordMessage {
     constructor(raw) {
-        this.raw = raw;                   // 原始消息数据
-        const data = raw.data;            // 互动数据
-        
-        this.uid = data.uid;              // 用户ID
-        this.uname = data.uname;          // 用户名
-        this.msgType = data.msg_type;     // 消息类型（1：进入直播间）
-        this.timestamp = data.timestamp;  // 时间戳
-        this.score = data.score;          // 积分
-        this.fans_medal = data.fans_medal ? {  // 粉丝勋章信息（可能为null）
-            anchor_roomid: data.fans_medal.anchor_roomid,  // 勋章所属主播的房间号
-            medal_level: data.fans_medal.medal_level,      // 勋章等级
-            medal_name: data.fans_medal.medal_name,        // 勋章名称
-            target_id: data.fans_medal.target_id           // 勋章主播的用户ID
-        } : {
-            anchor_roomid: 0,
-            medal_level: 0,
-            medal_name: '',
-            target_id: 0
-        };
+        this.raw = raw;
+        let uid = 0;
+        let uname = '';
+        let face = '';
+        let timestamp = 0;
+        let msgType = 0;
+        let fans_medal = null;
+        // 兼容pb结构
+        if (raw.data && raw.data.pb) {
+            const pbFields = parsePb(raw.data.pb);
+            uid = pbFields[1] || 0;
+            uname = pbFields[2] || '';
+            face = pbFields[3] || '';
+            timestamp = pbFields[8] || 0;
+            msgType = pbFields[5] || 1;
+            // medal等可后续补充
+        } else if (raw.data) {
+            // 兼容老结构
+            uid = raw.data.uid || 0;
+            uname = raw.data.uname || raw.data.username || '';
+            face = raw.data.uface || raw.data.face || '';
+            timestamp = raw.data.timestamp || 0;
+            msgType = raw.data.msg_type || 0;
+            if (raw.data.uinfo) {
+                const user_info = raw.data.uinfo;
+                const user_base_info = user_info.base || {};
+                uid = user_info.uid || uid;
+                uname = user_base_info.name || uname;
+                face = user_base_info.face || face;
+            }
+            // 兼容老结构的 fans_medal
+            if (raw.data.fans_medal) {
+                fans_medal = raw.data.fans_medal;
+            }
+        }
+        this.uid = uid;
+        this.uname = uname;
+        this.face = face;
+        this.timestamp = timestamp;
+        this.msgType = msgType;
+        // 保证 fans_medal 字段始终为对象，避免 undefined
+        this.fans_medal = fans_medal || { medal_level: 0, medal_name: '' };
     }
 }
 
@@ -403,4 +425,4 @@ module.exports = {
     RoomRealTimeMessageUpdateMessage,
     UserToastMessage,
     WidgetBannerMessage
-}; 
+};

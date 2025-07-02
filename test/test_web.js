@@ -1,9 +1,9 @@
-const BLiveClient = require('../src/clients/web_client');
+const { BLiveClient } = require('../src/clients/web_client');
 const BaseHandler = require('../src/handlers/base_handler');
 
 // 测试房间ID列表
 const TEST_ROOM_IDS = [
-    23438368
+    10722218
 ];
 
 // ... existing code ...A字段值（可选）
@@ -54,9 +54,11 @@ class MyHandler extends BaseHandler {
     }
 
     _on_interact_word(client, message) {
-        const medal_str = message.fans_medal.medal_level > 0 ? `[${message.fans_medal.medal_name}${message.fans_medal.medal_level}]` : '';
+        const fans_medal = message.fans_medal || {};
+        const medal_level = fans_medal.medal_level || 0;
+        const medal_name = fans_medal.medal_name || '';
+        const medal_str = medal_level > 0 ? `[${medal_name}${medal_level}]` : '';
         const user_str = `${message.uname}${medal_str}`;
-        
         switch (message.msgType) {
             case 1:
                 console.log(`[${client.roomId}] ${user_str} 进入直播间`);

@@ -3,7 +3,7 @@ const { OpenLiveClient } = require('../src/clients/open_live_client.js');
 const BaseHandler = require('../src/handlers/base_handler.js');
 const SESSDATA = '';
 // 测试房间ID列表
-const TEST_ROOM_IDS = [ 1828189761
+const TEST_ROOM_IDS = [ 10722218
 ];
 
 // 已登录账号的cookie中的SESSDATA字段值（可选）

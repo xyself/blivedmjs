@@ -19,7 +19,7 @@ class BaseHandler {
             'SUPER_CHAT_MESSAGE_DELETE': this._on_super_chat_delete.bind(this), // SC删除
             'LIKE_INFO_V3_UPDATE': this._on_like.bind(this),        // 点赞信息更新
             'LIKE_INFO_V3_CLICK': this._on_like_click.bind(this),   // 用户点赞
-            'INTERACT_WORD': this._on_interact_word.bind(this),     // 用户互动（进入直播间等）
+            'INTERACT_WORD_V2': this._on_interact_word.bind(this),     // 用户互动（进入直播间等）
             'ENTRY_EFFECT': this._on_entry_effect.bind(this),       // 入场特效
             'COMBO_SEND': this._on_combo_send.bind(this),           // 连击礼物
             'HOT_RANK_CHANGED': this._on_hot_rank_changed.bind(this), // 热门榜单变化

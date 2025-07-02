@@ -20,7 +20,8 @@
     "author": "",
     "license": "MIT",
     "dependencies": {
-        "axios": "^1.8.4",
+        "axios": "^1.10.0",
+        "base64-js": "^1.5.1",
         "crypto-js": "^4.2.0",
         "isomorphic-ws": "^5.0.0",
         "pako": "^2.1.0",

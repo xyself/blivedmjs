@@ -1,21 +1,15 @@
-# blivedm-js
 
-B站直播弹幕协议的Node.js实现，包含WebSocket客户端。
+# blivedmjs
 
-> **注意**：此版本为CommonJS模块格式，可直接在Node.js中使用，无需启用ES模块支持。
+B站直播弹幕协议 Node.js 实现，支持新版 INTERACT_WORD_V2 协议，WebSocket 直连，弹幕/礼物/SC/上舰/互动等多种消息，适合 Node.js 服务端和工具开发。
 
-## 功能特性
+## 特性
 
-- 支持WebSocket协议的B站直播弹幕获取
-- 支持多种消息类型：
-  - 弹幕
-  - 礼物
-  - 醒目留言（SC）
-  - 上舰
-  - 用户进入直播间
-  - 点赞信息
-  - 系统通知
-  等...
+- 支持 B 站 WebSocket 协议，实时获取直播间弹幕、礼物、SC、上舰、互动等消息
+- 兼容新版 INTERACT_WORD_V2（protobuf/pb结构）
+- 支持多房间、自动去重、消息类型丰富
+- 可自定义消息处理器，适合二次开发
+- 支持开放平台弹幕（OpenLiveClient）
 
 ## 安装
 
@@ -23,39 +17,31 @@ B站直播弹幕协议的Node.js实现，包含WebSocket客户端。
 npm install blivedmjs
 ```
 
-## 使用示例
+## 快速上手
 
 ```javascript
-const { BLiveClient } = require('blivedm-js');
-const { BaseHandler } = require('blivedm-js/handlers');
+const { BLiveClient, BaseHandler } = require('blivedmjs');
 
-// 创建自定义消息处理器
 class MyHandler extends BaseHandler {
-    // 弹幕消息
-    _on_danmaku(client, message) {
-        console.log(`[${client.roomId}] ${message.uname}: ${message.msg}`);
+    _on_danmaku(client, msg) {
+        console.log(`[${client.roomId}] ${msg.uname}: ${msg.msg}`);
     }
-
-    // 礼物消息
-    _on_gift(client, message) {
-        console.log(`[${client.roomId}] ${message.uname} 赠送 ${message.giftName}x${message.num}`);
+    _on_gift(client, msg) {
+        console.log(`[${client.roomId}] ${msg.uname} 赠送 ${msg.giftName}x${msg.num}`);
     }
-
-    // 醒目留言
-    _on_super_chat(client, message) {
-        console.log(`[${client.roomId}] 醒目留言 ￥${message.price} ${message.uname}: ${message.message}`);
+    _on_super_chat(client, msg) {
+        console.log(`[${client.roomId}] SC ￥${msg.price} ${msg.uname}: ${msg.message}`);
+    }
+    _on_interact_word(client, msg) {
+        console.log(`[${client.roomId}] ${msg.uname} 进入直播间`);
     }
 }
 
-// 使用示例
 async function main() {
-    const roomId = 你的房间ID;  // 替换为实际的房间ID
-    const client = new BLiveClient(roomId);
-    const handler = new MyHandler();
-    client.set_handler(handler);
-    
+    const client = new BLiveClient(房间ID); // 你的房间ID
+    client.set_handler(new MyHandler());
     await client.start();
-    console.log('弹幕获取已启动');
+    console.log('已连接，等待消息...');
 }
 
 main().catch(console.error);
@@ -63,31 +49,28 @@ main().catch(console.error);
 
 ## 支持的消息类型
 
-- `DANMU_MSG`: 弹幕消息
-- `SEND_GIFT`: 礼物消息
-- `GUARD_BUY`: 上舰消息
-- `SUPER_CHAT_MESSAGE`: 醒目留言（SC）
-- `INTERACT_WORD`: 用户进入直播间
-- `LIKE_INFO_V3_CLICK`: 用户点赞
-- 更多消息类型请参考源码...
+- `DANMU_MSG`：弹幕
+- `SEND_GIFT`：礼物
+- `GUARD_BUY`：上舰
+- `SUPER_CHAT_MESSAGE`：醒目留言（SC）
+- `INTERACT_WORD_V2`：新版用户互动（进入/关注/分享/点赞等，兼容pb结构）
+- `LIKE_INFO_V3_CLICK`：用户点赞
+- `NOTICE_MSG`：系统通知
+- 其他类型详见源码和 BaseHandler 注释
 
-## 自定义处理器
+## 进阶用法
 
-你可以通过继承 `BaseHandler` 类来创建自定义的消息处理器：
+- 支持多房间监听、自动心跳、断线重连
+- 支持自定义 handler，重写任意消息处理方法
+- 支持开放平台弹幕（OpenLiveClient、OpenLiveHandler）
 
-```javascript
-class MyHandler extends BaseHandler {
-    // 重写你想处理的消息方法
-    _on_danmaku(client, message) {
-        // 处理弹幕消息
-    }
+## 目录结构
 
-    _on_gift(client, message) {
-        // 处理礼物消息
-    }
-}
-```
+- `src/clients/web_client.js`：主 WebSocket 客户端
+- `src/handlers/base_handler.js`：基础消息处理器（可继承）
+- `src/models/web.js`：所有消息类型模型，兼容新版 pb 协议
+- `test/`：测试用例和示例
 
 ## 许可证
 
-MIT License 
+MIT License

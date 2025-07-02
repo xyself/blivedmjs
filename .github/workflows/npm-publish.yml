@@ -1,4 +1,8 @@
+
 name: Node.js Package
+
+permissions:
+  contents: write
 
 on:
   release:
